@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+/* 字體配置 */
+.font-serif {
+  font-family: var(--font-playfair-display), serif;
+}
+
+/* 強制全站預設為深色背景 */
+body {
+  background-color: #111111;
+  color: #ffffff;
+}
+
+/* 確保 smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes border-draw {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 1000;
+  }
+}
+
+@keyframes gradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
