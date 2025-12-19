@@ -8,8 +8,9 @@ const aboutTransition = {
 
 const values = [
   {
-    title: "協助打造您的事業起點",
-    description: "從零開始建立您的品牌形象與數位平台，為事業奠定堅實基礎",
+    title: "工程友善",
+    subtitle: "Engineering-Ready",
+    description: "融合前端邏輯 (Next.js/Tailwind)，確保設計稿從 Figma 到程式碼的完美落地，大幅降低開發溝通成本。",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -21,16 +22,20 @@ const values = [
         strokeLinejoin="round"
         className="w-12 h-12"
       >
-        <path d="M12 2L2 7l10 5 10-5-10-5z" />
-        <path d="M2 17l10 5 10-5" />
-        <path d="M2 12l10 5 10-5" />
-        <path d="M12 22l-4-2v-6l4 2 4-2v6l-4 2z" />
+        <rect x="2" y="3" width="20" height="18" rx="2" />
+        <path d="M6 7h12" />
+        <path d="M6 11h8" />
+        <path d="M6 15h4" />
+        <path d="M14 11h4" />
+        <path d="M14 15h4" />
+        <circle cx="18" cy="7" r="1" />
       </svg>
     ),
   },
   {
-    title: "提供專業用戶體驗建議",
-    description: "以數據驅動的 UX 分析，優化產品流程，提升用戶滿意度與轉換率",
+    title: "商業導向",
+    subtitle: "Business-Driven",
+    description: "美感只是基本，專注於優化使用者路徑與轉換率，用微互動 (Micro-interactions) 引導視覺焦點，解決商業痛點。",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -42,18 +47,20 @@ const values = [
         strokeLinejoin="round"
         className="w-12 h-12"
       >
-        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-        <circle cx="9" cy="7" r="4" />
-        <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-        <line x1="18" y1="8" x2="23" y2="8" />
-        <line x1="20.5" y1="5" x2="20.5" y2="11" />
+        <line x1="12" y1="20" x2="12" y2="10" />
+        <line x1="18" y1="20" x2="18" y2="4" />
+        <line x1="6" y1="20" x2="6" y2="16" />
+        <line x1="3" y1="20" x2="21" y2="20" />
+        <circle cx="12" cy="8" r="2" />
+        <circle cx="18" cy="2" r="2" />
+        <circle cx="6" cy="14" r="2" />
       </svg>
     ),
   },
   {
-    title: "客製化設計實現您的夢想",
-    description: "量身打造獨特設計方案，將您的創意與願景轉化為真實的數位體驗",
+    title: "系統思維",
+    subtitle: "Scalable Systems",
+    description: "擅長建構模組化的 Design System，從簡單網頁到複雜 SaaS 後台，確保產品隨業務擴張時依然保持一致與高效。",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -71,6 +78,10 @@ const values = [
         <rect x="14" y="14" width="7" height="7" rx="1" />
         <line x1="6.5" y1="6.5" x2="17.5" y2="17.5" />
         <line x1="17.5" y1="6.5" x2="6.5" y2="17.5" />
+        <circle cx="6.5" cy="6.5" r="1" />
+        <circle cx="17.5" cy="17.5" r="1" />
+        <circle cx="17.5" cy="6.5" r="1" />
+        <circle cx="6.5" cy="17.5" r="1" />
       </svg>
     ),
   },
@@ -121,7 +132,10 @@ export default function ValueProposition() {
               <div className="flex justify-center mb-4 text-green-400">
                 {value.icon}
               </div>
-              <h3 className="text-xl font-bold mb-3">{value.title}</h3>
+              <h3 className="text-xl font-bold mb-1">{value.title}</h3>
+              <p className="text-green-400/70 text-xs mb-3 font-mono">
+                {value.subtitle}
+              </p>
               <p className="text-gray-400 text-sm leading-relaxed">
                 {value.description}
               </p>

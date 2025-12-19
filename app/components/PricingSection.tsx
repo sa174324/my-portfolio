@@ -2,6 +2,9 @@
 
 import { useRef, useEffect, useState } from "react";
 
+// Instagram 連結（請替換為您的 Instagram 帳號）
+const INSTAGRAM_URL = "https://www.instagram.com/sam.174324/";
+
 const CheckIcon = ({ className }: { className?: string }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -24,48 +27,49 @@ interface PricingFeature {
 interface PricingPlan {
   title: string;
   price: string;
-  description: string;
+  targetAudience: string;
+  coreValue: string;
   features: PricingFeature[];
-  buttonText: string;
   isRecommended?: boolean;
 }
 
 const plans: PricingPlan[] = [
   {
-    title: "入門方案",
+    title: "品牌啟動",
     price: "$15,000+",
-    description: "適合個人品牌",
+    targetAudience: "個人品牌、單一產品推廣、活動頁面",
+    coreValue: "高視覺衝擊，專注於『轉換率』與『第一印象』",
     features: [
-      { text: "單頁設計" },
-      { text: "響應式設計" },
-      { text: "3 天交付" },
+      { text: "單頁式滾動設計 (One-page Scroll)" },
+      { text: "RWD 手機完美適配" },
+      { text: "Lumina 等級的沈浸式動效" },
+      { text: "3 天快速交付" },
     ],
-    buttonText: "詢問",
   },
   {
-    title: "專業方案",
+    title: "商業成長",
     price: "$30,000+",
-    description: "適合成長中的企業",
+    targetAudience: "中小企業官網、設計工作室、內容創作者",
+    coreValue: "建立品牌權威感，擁有完整的內容管理能力",
     features: [
-      { text: "5 頁設計" },
-      { text: "CMS 整合" },
-      { text: "基礎 SEO" },
-      { text: "動畫效果" },
+      { text: "5 頁完整架構 (首頁/關於/服務/聯絡/文章)" },
+      { text: "Vantage 風格部落格系統 (CMS)" },
+      { text: "基礎 SEO 優化 (讓 Google 找得到你)" },
+      { text: "後台易用性訓練" },
     ],
-    buttonText: "立即詢問",
     isRecommended: true,
   },
   {
-    title: "企業方案",
+    title: "產品原型",
     price: "$80,000+",
-    description: "完整網站應用",
+    targetAudience: "新創 SaaS、後台管理系統、複雜互動應用",
+    coreValue: "從 0 到 1 打造功能完整的 Web App",
     features: [
-      { text: "設計系統" },
-      { text: "用戶測試" },
-      { text: "進階原型設計" },
-      { text: "優先支援" },
+      { text: "TaskFlow 等級系統架構" },
+      { text: "複雜資料庫串接 (Supabase)" },
+      { text: "會員登入與權限管理" },
+      { text: "可擴充的設計系統 (Design System)" },
     ],
-    buttonText: "詢問",
   },
 ];
 
@@ -132,6 +136,18 @@ function PricingCard({ plan }: { plan: PricingPlan }) {
         } as React.CSSProperties
       }
     >
+      {/* 推薦方案的 Gradient 邊框 */}
+      {plan.isRecommended && (
+        <div
+          className="absolute -inset-[2px] rounded-3xl pointer-events-none z-0"
+          style={{
+            background: "linear-gradient(135deg, rgba(34, 197, 94, 0.6), rgba(16, 185, 129, 0.6), rgba(34, 197, 94, 0.6))",
+            backgroundSize: "200% 200%",
+            animation: "gradient 3s ease infinite",
+          }}
+        />
+      )}
+
       {/* Spotlight 發光邊框層 - 外層發光效果 */}
       <div
         className={`absolute -inset-[2px] rounded-3xl pointer-events-none transition-opacity duration-500 ${
@@ -155,10 +171,10 @@ function PricingCard({ plan }: { plan: PricingPlan }) {
       {/* 卡片內容容器 */}
       <div
         ref={contentRef}
-        className={`relative bg-[#1a1a1a]/80 backdrop-blur-sm rounded-3xl p-8 border transition-all duration-300 z-10 overflow-hidden ${
+        className={`relative bg-[#1a1a1a]/80 backdrop-blur-sm rounded-3xl p-8 transition-all duration-300 z-10 overflow-hidden ${
           plan.isRecommended
-            ? "border-green-400 shadow-[0_0_40px_rgba(34,197,94,0.3)]"
-            : "border-white/10"
+            ? "border border-green-400 shadow-[0_0_40px_rgba(34,197,94,0.3)]"
+            : "border border-white/10"
         }`}
         style={
           {
@@ -184,38 +200,53 @@ function PricingCard({ plan }: { plan: PricingPlan }) {
 
         <div className="relative z-10">
           {plan.isRecommended && (
-            <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-green-400 text-neutral-900 px-6 py-2 rounded-full font-semibold text-sm shadow-md z-20">
-              推薦
+            <div className="absolute -top-3 -right-3 bg-gradient-to-r from-green-400 to-emerald-400 text-neutral-900 px-4 py-1.5 rounded-full font-semibold text-xs shadow-lg z-20">
+              Most Popular
             </div>
           )}
 
-          <div className="mb-8">
-            <h3 className="text-white font-bold text-xl mb-2">{plan.title}</h3>
+          <div className="mb-6">
+            <h3 className="text-white font-bold text-2xl mb-3">{plan.title}</h3>
             <div className="text-white mb-4">
               <span className="text-5xl font-extrabold">{plan.price}</span>
             </div>
-            <p className="text-white/60">{plan.description}</p>
           </div>
 
-          <ul className="space-y-4 mb-8">
-            {plan.features.map((feature, index) => (
-              <li key={index} className="flex items-start gap-3">
-                <CheckIcon className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                <span className="text-white/80">{feature.text}</span>
-              </li>
-            ))}
-          </ul>
+          <div className="mb-6 space-y-4">
+            <div>
+              <p className="text-white/50 text-sm mb-2">適合對象：</p>
+              <p className="text-white/80 text-sm leading-relaxed">{plan.targetAudience}</p>
+            </div>
+            <div>
+              <p className="text-white/50 text-sm mb-2">核心價值：</p>
+              <p className="text-green-400/90 text-sm leading-relaxed font-medium">{plan.coreValue}</p>
+            </div>
+          </div>
 
-          <button
-            type="button"
-            className={`w-full py-4 rounded-xl transition-all duration-300 font-semibold ${
+          <div className="mb-6">
+            <p className="text-white/50 text-sm mb-4">包含內容：</p>
+            <ul className="space-y-3">
+              {plan.features.map((feature, index) => (
+                <li key={index} className="flex items-start gap-3">
+                  <CheckIcon className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
+                  <span className="text-white/80 text-sm leading-relaxed">{feature.text}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <a
+            href={INSTAGRAM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`w-full py-3 rounded-xl transition-all duration-300 font-semibold text-center block ${
               plan.isRecommended
                 ? "bg-green-400 text-neutral-900 hover:bg-green-500 shadow-[0_4px_20px_rgba(34,197,94,0.4)]"
-                : "bg-white/5 text-white border border-white/20 hover:bg-white/10 hover:border-green-400/50"
+                : "bg-transparent text-white border-2 border-white/20 hover:bg-white/5 hover:border-green-400/50"
             }`}
           >
-            {plan.buttonText}
-          </button>
+            預約諮詢
+          </a>
         </div>
       </div>
     </div>
@@ -227,9 +258,9 @@ export default function PricingSection() {
     <section className="min-h-screen py-20 px-4">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h1 className="text-white text-3xl md:text-4xl font-bold mb-4">適合您的方案</h1>
+          <h2 className="text-white text-3xl md:text-4xl font-bold mb-4">適合您的方案</h2>
           <p className="text-white/60 max-w-2xl mx-auto">
-            選擇最適合您專案需求的方案。所有方案皆包含專業設計與專屬支援。
+            每個方案都是針對不同階段需求的完整解決方案，而非單純的規格堆疊，專注於為您創造真正的商業價值。
           </p>
         </div>
 

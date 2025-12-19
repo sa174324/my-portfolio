@@ -6,11 +6,11 @@ const aboutTransition = {
 };
 
 const tags = [
-  "UI 設計",
-  "UX 流程",
-  "網頁架站",
-  "品牌設計",
-  "AI 協作",
+  "全端產品設計 (Full-stack Design)",
+  "Next.js / React 開發",
+  "UI/UX 策略規劃",
+  "設計系統 (Design Systems)",
+  "AI 賦能工作流 (AI Workflow)",
 ];
 
 export default function About() {
@@ -28,14 +28,23 @@ export default function About() {
       >
         關於我
       </motion.h2>
+      <motion.h3
+        className="text-2xl font-bold mb-6 text-green-400"
+        initial={{ opacity: 0, y: 48 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.25 }}
+        transition={{ ...aboutTransition, delay: 0.08 }}
+      >
+        連結美學與工程的｜全端產品設計師
+      </motion.h3>
       <motion.p
         className="text-lg text-gray-400 mb-6"
         initial={{ opacity: 0, y: 32 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
-        transition={{ ...aboutTransition, delay: 0.08 }}
+        transition={{ ...aboutTransition, delay: 0.16 }}
       >
-        具備豐富 UI/UX 設計經驗，專長於良好用戶體驗、品牌視覺與跨平台規劃，致力於協助客戶實現最佳數位產品體驗。
+        具備豐富的 UI/UX 經驗，更掌握 Next.js 前端開發技術與 AI 高效工作流。我致力於填補『設計』與『開發』之間的鴻溝，從商業目標出發，為您提供從設計到開發且具備高度可行性的數位產品服務，大幅降低溝通成本並加速產品上市。
       </motion.p>
       <div className="flex flex-wrap justify-center gap-3 mt-6">
         {tags.map((tag, idx) => (

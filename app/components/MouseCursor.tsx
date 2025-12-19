@@ -9,18 +9,19 @@ export default function MouseCursor() {
   const [isVisible, setIsVisible] = useState(false);
   const rafRef = useRef<number | null>(null);
 
-  // 如果是 LUMINA、TaskFlow 或 Pulse 頁面，不顯示此組件
+  // 如果是 LUMINA、TaskFlow、Pulse 或 Vantage 頁面，不顯示此組件
   const isLuminaPage = pathname?.includes("/demos/lumina");
   const isTaskflowPage = pathname?.includes("/demos/taskflow");
   const isPulsePage = pathname?.includes("/demos/pulse");
-  const shouldDisable = isLuminaPage || isTaskflowPage || isPulsePage;
+  const isVantagePage = pathname?.includes("/demos/vantage");
+  const shouldDisable = isLuminaPage || isTaskflowPage || isPulsePage || isVantagePage;
 
   useEffect(() => {
-    // 如果是 LUMINA、TaskFlow 或 Pulse 頁面，設置 body 的 data 屬性並恢復默認光標
+    // 如果是 LUMINA、TaskFlow、Pulse 或 Vantage 頁面，設置 body 的 data 屬性並恢復默認光標
     if (shouldDisable) {
-      document.body.setAttribute('data-lumina-page', 'true');
+      document.body.setAttribute('data-custom-cursor-disabled', 'true');
       return () => {
-        document.body.removeAttribute('data-lumina-page');
+        document.body.removeAttribute('data-custom-cursor-disabled');
       };
     }
 
@@ -144,7 +145,7 @@ export default function MouseCursor() {
       {/* 全局樣式 */}
       <style jsx global>{`
         @media (pointer: fine) {
-          body:not([data-lumina-page]) * {
+          body:not([data-custom-cursor-disabled]) * {
             cursor: none !important;
           }
         }

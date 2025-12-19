@@ -20,18 +20,35 @@ const playfairDisplay = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  // 1. 基本資訊
-  title: "An Design | UI/UX & Full-Stack Developer",
-  description: "專注於打造高轉換率的形象網站與應用程式。提供從設計到開發的一站式服務。",
+  // 標題公式：品牌名 | 核心職位 | 主要服務
+  title: 'An Design | Design Engineer & Next.js Developer',
   
-  // 2. 補上 Open Graph (解決 og:url, og:type 報錯)
+  // 描述：強調全端開發與 UI/UX 設計服務
+  description: '提供全端開發與 UI/UX 設計服務。專注於為新創與品牌打造高效能的數位產品，從 UI/UX 設計、Figma 原型到 Next.js 網站開發的一站式解決方案。',
+  
+  // 關鍵字：讓爬蟲知道你的標籤
+  keywords: ['Next.js 開發', 'UI/UX 設計', '台灣 Design Engineer', '網站接案', 'Supabase 開發', 'Framer Motion 動效', '全端開發', 'Design Engineer'],
+  
+  // 作者與建立者
+  authors: [{ name: 'An Design', url: 'https://my-portfolio-ivory-eta-12.vercel.app' }],
+  creator: 'An Design',
+  
+  // Open Graph (給社群分享用的)
   openGraph: {
-    title: "An Design | UI/UX & Full-Stack Developer",
-    description: "專注於打造高轉換率的形象網站與應用程式。",
-    url: "https://https://my-portfolio-ivory-eta-12.vercel.app/", // ⚠️ 請務必換成你的真實網址
-    siteName: "An Design Portfolio",
-    locale: "zh_TW",
-    type: "website", // 這就是解決 og:type 的關鍵
+    type: 'website',
+    locale: 'zh_TW',
+    url: 'https://my-portfolio-ivory-eta-12.vercel.app',
+    title: 'An Design | Design Engineer & Next.js Developer',
+    description: '提供全端開發與 UI/UX 設計服務。專注於為新創與品牌打造高效能的數位產品，從 UI/UX 設計、Figma 原型到 Next.js 網站開發的一站式解決方案。',
+    siteName: 'An Design',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'An Design Portfolio Preview',
+      },
+    ],
   },
 };
 
@@ -41,7 +58,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="zh-TW" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${playfairDisplay.variable} antialiased bg-[#111] text-white`}
         suppressHydrationWarning

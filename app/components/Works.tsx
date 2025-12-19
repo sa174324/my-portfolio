@@ -39,7 +39,7 @@ export default function Works() {
   useEffect(() => {
     const fetchProjects = async () => {
       setLoading(true);
-      const { data, error } = await supabase.from('projects').select('*');
+      const { data, error } = await supabase.from('projects').select('*').order('sort_order', { ascending: true });
       if (!error && data) {
         setProjects(data);
       }
@@ -70,6 +70,9 @@ export default function Works() {
   return (
     <section id="works" className="max-w-7xl mx-auto px-6 py-40">
       <h2 className="text-3xl font-bold mb-12 border-l-4 border-green-400 pl-4">我的作品</h2>
+      <p className="text-white/60 text-center mb-12">
+        展示不同維度的設計解決方案：從品牌網站的沈浸感、軟體系統的複雜邏輯、搶眼的行銷動效，到資訊網站的內容架構。全方位滿足各種商業場景的設計需求。
+      </p>
       {loading ? (
         <div className="text-center py-8">Loading...</div>
       ) : (

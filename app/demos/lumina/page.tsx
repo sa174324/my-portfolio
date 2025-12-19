@@ -61,7 +61,8 @@ function RevealMaskImage({
       {/* 遮罩揭示動畫 */}
       <motion.div
         ref={maskRef}
-        className="absolute inset-0 bg-[#111] z-10"
+        // 遮罩從深色改為淡灰，讓 reveal 有柔和效果
+        className="absolute inset-0 bg-slate-100 z-10"
         initial={{ scaleX: 1 }}
         animate={isInView ? { scaleX: 0 } : { scaleX: 1 }}
         transition={{ 
@@ -216,10 +217,10 @@ export default function LuminaLanding() {
   const heroY = useTransform(heroScrollYProgress, [0, 1], ["0%", "20%"])
 
   return (
-    <main className="min-h-screen bg-[#F5F5F5] text-[#111]">
+    <main className="min-h-screen bg-white text-slate-900">
       {/* 自訂游標 */}
       <motion.div
-        className="fixed top-0 left-0 w-6 h-6 rounded-full bg-white pointer-events-none z-[9999] mix-blend-difference"
+        className="fixed top-0 left-0 w-6 h-6 rounded-full bg-black pointer-events-none z-[9999] mix-blend-difference"
         animate={{
           x: mousePosition.x - 12,
           y: mousePosition.y - 12,
@@ -233,28 +234,28 @@ export default function LuminaLanding() {
       />
 
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#F5F5F5]/80 backdrop-blur-sm border-b border-[#111]/10">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-sm border-b border-slate-200">
         <div className="container mx-auto px-6 lg:px-16 py-8 flex items-center justify-between">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
-            className="text-2xl font-serif text-[#111]"
-            style={{ letterSpacing: "-0.05em" }}
+            className="text-2xl font-serif"
+            style={{ letterSpacing: "-0.05em", color: "#111" }}
           >
             LUMINA
           </motion.div>
           <div className="hidden md:flex items-center gap-16">
-            <a href="#philosophy" className="text-xs tracking-widest uppercase hover:opacity-60 transition-opacity font-sans">
+            <a href="#philosophy" className="text-xs tracking-widest uppercase hover:opacity-60 transition-opacity font-sans text-black">
               Philosophy
             </a>
-            <a href="#works" className="text-xs tracking-widest uppercase hover:opacity-60 transition-opacity font-sans">
+            <a href="#works" className="text-xs tracking-widest uppercase hover:opacity-60 transition-opacity font-sans text-black">
               Works
             </a>
-            <a href="#services" className="text-xs tracking-widest uppercase hover:opacity-60 transition-opacity font-sans">
+            <a href="#services" className="text-xs tracking-widest uppercase hover:opacity-60 transition-opacity font-sans text-black">
               Services
             </a>
-            <a href="#contact" className="text-xs tracking-widest uppercase hover:opacity-60 transition-opacity font-sans">
+            <a href="#contact" className="text-xs tracking-widest uppercase hover:opacity-60 transition-opacity font-sans text-black">
               Contact
             </a>
           </div>
@@ -274,7 +275,7 @@ export default function LuminaLanding() {
               quality={90}
             />
           </motion.div>
-          <div className="absolute inset-0 bg-[#111]/40" />
+          <div className="absolute inset-0 bg-white/60" /> {/* Light overlay */}
         </div>
         <div className="relative z-10 text-center px-6">
           <motion.div
@@ -284,8 +285,8 @@ export default function LuminaLanding() {
             className="mb-8"
           >
             <h1
-              className="text-6xl md:text-8xl lg:text-9xl font-serif text-white mb-6"
-              style={{ letterSpacing: "-0.05em" }}
+              className="text-6xl md:text-8xl lg:text-9xl font-serif mb-6"
+              style={{ letterSpacing: "-0.05em", color: "#111" }}
             >
               LUMINA
             </h1>
@@ -294,7 +295,7 @@ export default function LuminaLanding() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.6 }}
-            className="text-xs md:text-sm tracking-widest uppercase text-white/90 font-sans"
+            className="text-xs md:text-sm tracking-widest uppercase font-sans text-slate-700"
           >
             Shaping the Future of Space
           </motion.p>
@@ -302,21 +303,21 @@ export default function LuminaLanding() {
       </section>
 
       {/* 裝飾線 */}
-      <div className="w-full h-[1px] bg-[#111]/10" />
+      <div className="w-full h-[1px] bg-slate-200" />
 
       {/* Philosophy Section */}
-      <section id="philosophy" className="py-40 px-6 lg:px-16 bg-[#F5F5F5]">
+      <section id="philosophy" className="py-40 px-6 lg:px-16 bg-white">
         <div className="container mx-auto max-w-7xl">
           <div className="grid md:grid-cols-2 gap-24 items-start">
             <ScrollReveal>
               <div className="space-y-8">
                 <h2
-                  className="text-5xl md:text-6xl lg:text-7xl font-serif leading-tight text-[#111]"
-                  style={{ letterSpacing: "-0.05em" }}
+                  className="text-5xl md:text-6xl lg:text-7xl font-serif leading-tight"
+                  style={{ letterSpacing: "-0.05em", color: "#111" }}
                 >
                   Philosophy
                 </h2>
-                <div className="space-y-6 font-sans text-lg md:text-xl leading-relaxed text-[#111]/80">
+                <div className="space-y-6 font-sans text-lg md:text-xl leading-relaxed text-slate-700">
                   <p>
                     We believe in the power of restraint. Every line, every surface, every shadow is intentional. Our
                     designs strip away the unnecessary to reveal the essential.
@@ -347,15 +348,15 @@ export default function LuminaLanding() {
       </section>
 
       {/* 裝飾線 */}
-      <div className="w-full h-[1px] bg-[#111]/10" />
+      <div className="w-full h-[1px] bg-slate-200" />
 
       {/* Selected Works */}
       <section id="works" className="py-40 px-6 lg:px-16 bg-white">
         <div className="container mx-auto max-w-7xl">
           <ScrollReveal>
             <h2
-              className="text-5xl md:text-6xl lg:text-7xl font-serif mb-24 text-[#111]"
-              style={{ letterSpacing: "-0.05em" }}
+              className="text-5xl md:text-6xl lg:text-7xl font-serif mb-24"
+              style={{ letterSpacing: "-0.05em", color: "#111" }}
             >
               Selected Works
             </h2>
@@ -371,7 +372,7 @@ export default function LuminaLanding() {
                   transition={{ duration: 0.3, ease: "easeOut" }}
                   data-cursor-hover
                 >
-                  <div className="relative w-full overflow-hidden bg-[#111]/5" data-cursor-hover>
+                  <div className="relative w-full overflow-hidden bg-slate-100" data-cursor-hover>
                     <div
                       className={`relative ${
                         work.aspect === "portrait" ? "h-[500px] md:h-[600px]" : "h-[300px] md:h-[400px]"
@@ -386,11 +387,11 @@ export default function LuminaLanding() {
                         speed={0.15}
                       />
                     </div>
-                    <div className="absolute inset-0 bg-[#111]/0 group-hover:bg-[#111]/10 transition-colors duration-300" />
+                    <div className="absolute inset-0 bg-transparent group-hover:bg-slate-200/40 transition-colors duration-300" />
                   </div>
                   <h3
-                    className="mt-6 text-2xl md:text-3xl font-serif text-[#111]"
-                    style={{ letterSpacing: "-0.05em" }}
+                    className="mt-6 text-2xl md:text-3xl font-serif"
+                    style={{ letterSpacing: "-0.05em", color: "#111" }}
                   >
                     {work.title}
                   </h3>
@@ -402,15 +403,15 @@ export default function LuminaLanding() {
       </section>
 
       {/* 裝飾線 */}
-      <div className="w-full h-[1px] bg-[#111]/10" />
+      <div className="w-full h-[1px] bg-slate-200" />
 
       {/* Services Section */}
-      <section id="services" className="py-40 px-6 lg:px-16 bg-[#F5F5F5]">
+      <section id="services" className="py-40 px-6 lg:px-16 bg-white">
         <div className="container mx-auto max-w-7xl">
           <ScrollReveal>
             <h2
-              className="text-5xl md:text-6xl lg:text-7xl font-serif mb-24 text-[#111]"
-              style={{ letterSpacing: "-0.05em" }}
+              className="text-5xl md:text-6xl lg:text-7xl font-serif mb-24"
+              style={{ letterSpacing: "-0.05em", color: "#111" }}
             >
               Services
             </h2>
@@ -420,12 +421,12 @@ export default function LuminaLanding() {
             <ScrollReveal>
               <div>
                 <h3
-                  className="text-3xl md:text-4xl font-serif mb-6 text-[#111]"
-                  style={{ letterSpacing: "-0.05em" }}
+                  className="text-3xl md:text-4xl font-serif mb-6"
+                  style={{ letterSpacing: "-0.05em", color: "#111" }}
                 >
                   Residential
                 </h3>
-                <ul className="space-y-3 font-sans text-lg text-[#111]/70">
+                <ul className="space-y-3 font-sans text-lg text-slate-700">
                   <li>• Custom Home Design</li>
                   <li>• Renovation & Restoration</li>
                   <li>• Interior Architecture</li>
@@ -437,12 +438,12 @@ export default function LuminaLanding() {
             <ScrollReveal delay={0.1}>
               <div>
                 <h3
-                  className="text-3xl md:text-4xl font-serif mb-6 text-[#111]"
-                  style={{ letterSpacing: "-0.05em" }}
+                  className="text-3xl md:text-4xl font-serif mb-6"
+                  style={{ letterSpacing: "-0.05em", color: "#111" }}
                 >
                   Commercial
                 </h3>
-                <ul className="space-y-3 font-sans text-lg text-[#111]/70">
+                <ul className="space-y-3 font-sans text-lg text-slate-700">
                   <li>• Office Buildings</li>
                   <li>• Retail Spaces</li>
                   <li>• Hospitality Design</li>
@@ -454,12 +455,12 @@ export default function LuminaLanding() {
             <ScrollReveal delay={0.2}>
               <div>
                 <h3
-                  className="text-3xl md:text-4xl font-serif mb-6 text-[#111]"
-                  style={{ letterSpacing: "-0.05em" }}
+                  className="text-3xl md:text-4xl font-serif mb-6"
+                  style={{ letterSpacing: "-0.05em", color: "#111" }}
                 >
                   Urban Planning
                 </h3>
-                <ul className="space-y-3 font-sans text-lg text-[#111]/70">
+                <ul className="space-y-3 font-sans text-lg text-slate-700">
                   <li>• Master Planning</li>
                   <li>• Community Development</li>
                   <li>• Sustainable Design</li>
@@ -472,16 +473,16 @@ export default function LuminaLanding() {
       </section>
 
       {/* 裝飾線 */}
-      <div className="w-full h-[1px] bg-[#111]/10" />
+      <div className="w-full h-[1px] bg-slate-200" />
 
       {/* Footer */}
-      <footer id="contact" className="py-40 px-6 lg:px-16 border-t border-[#111]/10 bg-white">
+      <footer id="contact" className="py-40 px-6 lg:px-16 border-t border-slate-200 bg-white">
         <div className="container mx-auto max-w-7xl">
           <div className="grid md:grid-cols-3 gap-16 md:gap-24">
             <ScrollReveal>
               <div>
-                <h3 className="text-xs tracking-widest uppercase mb-6 font-sans text-[#111]/60">Address</h3>
-                <address className="text-lg font-sans text-[#111]/80 leading-relaxed not-italic">
+                <h3 className="text-xs tracking-widest uppercase mb-6 font-sans text-slate-500">Address</h3>
+                <address className="text-lg font-sans text-slate-700 leading-relaxed not-italic">
                   123 Design Avenue
                   <br />
                   New York, NY 10001
@@ -493,10 +494,10 @@ export default function LuminaLanding() {
 
             <ScrollReveal delay={0.1}>
               <div>
-                <h3 className="text-xs tracking-widest uppercase mb-6 font-sans text-[#111]/60">Email</h3>
+                <h3 className="text-xs tracking-widest uppercase mb-6 font-sans text-slate-500">Email</h3>
                 <a
                   href="mailto:hello@lumina.studio"
-                  className="text-lg font-sans text-[#111] hover:opacity-60 transition-opacity"
+                  className="text-lg font-sans text-black hover:opacity-60 transition-opacity"
                 >
                   hello@lumina.studio
                 </a>
@@ -505,23 +506,23 @@ export default function LuminaLanding() {
 
             <ScrollReveal delay={0.2}>
               <div>
-                <h3 className="text-xs tracking-widest uppercase mb-6 font-sans text-[#111]/60">Social</h3>
+                <h3 className="text-xs tracking-widest uppercase mb-6 font-sans text-slate-500">Social</h3>
                 <div className="flex flex-col gap-3">
                   <a
                     href="#"
-                    className="text-lg font-sans text-[#111] hover:opacity-60 transition-opacity"
+                    className="text-lg font-sans text-black hover:opacity-60 transition-opacity"
                   >
                     Instagram
                   </a>
                   <a
                     href="#"
-                    className="text-lg font-sans text-[#111] hover:opacity-60 transition-opacity"
+                    className="text-lg font-sans text-black hover:opacity-60 transition-opacity"
                   >
                     LinkedIn
                   </a>
                   <a
                     href="#"
-                    className="text-lg font-sans text-[#111] hover:opacity-60 transition-opacity"
+                    className="text-lg font-sans text-black hover:opacity-60 transition-opacity"
                   >
                     Pinterest
                   </a>
@@ -530,9 +531,9 @@ export default function LuminaLanding() {
             </ScrollReveal>
           </div>
 
-          <div className="mt-24 pt-8 border-t border-[#111]/10">
+          <div className="mt-24 pt-8 border-t border-slate-200">
             <ScrollReveal>
-              <p className="text-sm font-sans text-[#111]/60 text-center">
+              <p className="text-sm font-sans text-slate-500 text-center">
                 © {new Date().getFullYear()} Lumina. All rights reserved.
               </p>
             </ScrollReveal>
